@@ -1,6 +1,8 @@
 <script lang="ts">
 	import '../app.postcss';
 	import CreateConversation from '$lib/modals/CreateConversation.svelte';
+	import ModifyUser from '$lib/modals/ModifyUser.svelte';
+	import ModifyGroup from '$lib/modals/ModifyGroup.svelte';
 	import {
 		AppShell,
 		initializeStores,
@@ -13,7 +15,9 @@
 	initializeStores();
 
 	const modalRegistry: Record<string, ModalComponent> = {
-		createConversation: { ref: CreateConversation }
+		createConversation: { ref: CreateConversation },
+		modifyUser: { ref: ModifyUser },
+		modifyGroup: { ref: ModifyGroup }
 	};
 
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
