@@ -51,7 +51,10 @@
   "type": "module",
   "dependencies": {
     "@floating-ui/dom": "1.6.1",
+    "@lucia-auth/adapter-prisma": "^4.0.0",
     "@prisma/client": "5.8.1",
-    "highlight.js": "11.9.0"
+    "highlight.js": "11.9.0",
+    "lucia": "^3.0.1",
+    "oslo": "^1.0.3"
   }
 }
