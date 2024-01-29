@@ -8,6 +8,8 @@ import { generateId } from 'lucia';
 import { setError, superValidate } from 'sveltekit-superforms/server';
 import prisma from '$lib/prisma';
 import type { PageServerLoad, Actions } from './$types';
+import { createEmailVerificationToken } from '$lib/server/token';
+import { sendEmailVerificationLink } from '$lib/server/email';
 
 const schema = z.object({
 	email: z.string().email({ message: "L'adresse email n'est pas valide" }),
@@ -19,7 +21,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 	if (!locals.user) {
 		redirect(302, '/login');
 	} else if (!locals.user.isAdmin) {
-		return fail(403);
+		throw fail(403);
 	}
 	const form = await superValidate(schema);
 	const groups = await prisma.group.findMany();
@@ -32,7 +34,7 @@ export const actions: Actions = {
 		if (!locals.user) {
 			redirect(302, '/login');
 		} else if (!locals.user.isAdmin) {
-			return fail(403);
+			throw fail(403);
 		}
 		const form = await superValidate(request, schema);
 
@@ -77,7 +79,7 @@ export const actions: Actions = {
 		});
 
 		try {
-			await prisma.user.create({
+			const user = await prisma.user.create({
 				data: {
 					id: generateId(15),
 					email: form.data.email.toLowerCase(),
@@ -89,12 +91,12 @@ export const actions: Actions = {
 				}
 			});
 
-			// const verificationToken = await createEmailVerificationToken(
-			// 	user.id,
-			// 	form.data.email.toLowerCase()
-			// );
+			const verificationToken = await createEmailVerificationToken(
+				user.id,
+				form.data.email.toLowerCase()
+			);
 
-			// await sendEmailVerificationLink(verificationToken, user);
+			await sendEmailVerificationLink(verificationToken, user);
 		} catch (error) {
 			if (error instanceof PrismaClientKnownRequestError && error.code === 'P2002') {
 				return setError(form, 'email', "L'adresse email est déjà utilisée");

@@ -168,9 +168,9 @@ export const GET: RequestHandler = async ({ url, locals }) => {
 		},
 		where: {
 			OR: [
-				{ username: { contains: result.data.search } },
-				{ email: { contains: result.data.search } },
-				{ group: { name: { contains: result.data.search } } }
+				{ username: { contains: result.data.search, mode: 'insensitive' } },
+				{ email: { contains: result.data.search, mode: 'insensitive' } },
+				{ group: { name: { contains: result.data.search, mode: 'insensitive' } } }
 			],
 			group: result.data.onlyWithoutGroup ? null : undefined,
 			id: result.data.all ? undefined : { not: locals.user.id }
@@ -187,9 +187,9 @@ export const GET: RequestHandler = async ({ url, locals }) => {
 		? await prisma.user.count({
 				where: {
 					OR: [
-						{ username: { contains: result.data.search } },
-						{ email: { contains: result.data.search } },
-						{ group: { name: { contains: result.data.search } } }
+						{ username: { contains: result.data.search, mode: 'insensitive' } },
+						{ email: { contains: result.data.search, mode: 'insensitive' } },
+						{ group: { name: { contains: result.data.search, mode: 'insensitive' } } }
 					]
 				}
 			})

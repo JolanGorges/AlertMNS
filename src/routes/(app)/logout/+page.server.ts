@@ -4,7 +4,7 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ locals, cookies }) => {
 	if (!locals.session) {
-		return fail(401);
+		throw fail(401);
 	}
 	await lucia.invalidateSession(locals.session.id);
 	const sessionCookie = lucia.createBlankSessionCookie();

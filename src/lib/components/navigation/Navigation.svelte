@@ -65,7 +65,7 @@
 									<li>
 										<a
 											bind:this={refs[i]}
-											class={$page.params.slug === conversation.id ? 'bg-black' : ''}
+											class={$page.params.slug === conversation.id ? 'bg-primary-500' : ''}
 											href="/chat/{conversation.id}">{conversation.users[0].username}</a
 										>
 									</li>
@@ -85,7 +85,7 @@
 									<li>
 										<a
 											bind:this={refs[i]}
-											class={$page.params.slug === conversation.id ? 'bg-black' : ''}
+											class={$page.params.slug === conversation.id ? 'bg-primary-500' : ''}
 											href="/chat/{conversation.id}">{conversation.name}</a
 										>
 									</li>
@@ -97,7 +97,7 @@
 			</AccordionItem>
 		</Accordion>
 	</div>
-	<div class="flex text-xl items-center p-2 bg-surface-800">
+	<div class="flex text-xl items-center p-2">
 		<p class="flex-grow">{value.username}</p>
 
 		<button use:popup={popupClick} class="btn btn-icon"><Cog /></button>

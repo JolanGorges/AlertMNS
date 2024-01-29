@@ -6,7 +6,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 	if (!locals.user) {
 		redirect(302, '/login');
 	} else if (!locals.user.isAdmin) {
-		return fail(403);
+		throw fail(403);
 	}
 	const groups = await prisma.group.findMany({
 		include: {

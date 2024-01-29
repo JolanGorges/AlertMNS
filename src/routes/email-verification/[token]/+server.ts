@@ -9,16 +9,19 @@ const schema = z.object({
 	token: z.string().length(40)
 });
 
-export const GET: RequestHandler = async ({ url }) => {
+export const GET: RequestHandler = async ({ params }) => {
 	const result = schema.safeParse({
-		token: url.searchParams.get('token')
+		token: params.token
 	});
 
 	if (!result.success) {
+		console.log(result.error);
 		return new Response(null, {
 			status: 401
 		});
 	}
+
+	console.log('success');
 
 	const token = await prisma.$transaction(async (trx) => {
 		const token = await trx.emailVerificationToken.findUnique({

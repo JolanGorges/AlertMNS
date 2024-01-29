@@ -13,7 +13,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 	if (!locals.user) {
 		redirect(302, '/login');
 	} else if (!locals.user.isAdmin) {
-		return fail(403);
+		throw fail(403);
 	}
 	const form = await superValidate(schema);
 	return { form };
@@ -24,7 +24,7 @@ export const actions: Actions = {
 		if (!locals.user) {
 			redirect(302, '/login');
 		} else if (!locals.user.isAdmin) {
-			return fail(403);
+			throw fail(403);
 		}
 		const form = await superValidate(request, schema);
 		if (!form.valid) {

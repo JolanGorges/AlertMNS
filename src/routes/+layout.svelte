@@ -4,6 +4,7 @@
 	import ModifyUser from '$lib/modals/ModifyUser.svelte';
 	import ModifyGroup from '$lib/modals/ModifyGroup.svelte';
 	import {
+		autoModeWatcher,
 		AppShell,
 		initializeStores,
 		storePopup,
@@ -22,6 +23,8 @@
 
 	storePopup.set({ computePosition, autoUpdate, flip, shift, offset, arrow });
 </script>
+
+<svelte:head>{@html '<script>(' + autoModeWatcher.toString() + ')();</script>'}</svelte:head>
 
 <Modal components={modalRegistry} />
 <AppShell>
