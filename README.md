@@ -1,38 +1,56 @@
-# create-svelte
+# AlertMNS
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+Welcome to the README for AlertMNS! This repository contains a Svelte project.
 
-## Creating a project
+## Installation
 
-If you're seeing this, you've probably already done this step. Congrats!
+To install and run this Svelte project locally, please follow these steps:
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+1. **Clone the Repository:**
 
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+    git clone https://github.com/JolanGorges/AlertMNS
 ```
 
-## Building
-
-To create a production version of your app:
+2. **Navigate to the Project Directory:**
 
 ```bash
-npm run build
+    cd AlertMNS
 ```
 
-You can preview the production build with `npm run preview`.
+3. **Create a `.env` file:**
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+- Duplicate the `.env.example` file:
+  ```
+  cp .env.example .env
+  ```
+- Update the values in the `.env` file according to your environment and requirements.
+
+4. **Install Dependencies:**
+
+```bash
+    pnpm i
+```
+
+5. **Prisma Setup:**
+
+```bash
+    pnpm prisma db push && pnpm prisma db seed
+```
+
+6. **Run the Development Server:**
+
+```bash
+    pnpm dev --open
+```
+
+## Additional Notes
+
+- You may customize the project configuration and settings in the `svelte.config.js` file and other relevant configuration files.
+- For production builds, you can run:
+
+```bash
+    pnpm build
+```
+
+This command will create an optimized version of your application in the `public/build` directory.
