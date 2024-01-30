@@ -1,6 +1,7 @@
 import { render } from '@jolan57/svelte-email';
 import nodemailer from 'nodemailer';
 import type { User } from '@prisma/client';
+import passwordReset from '$lib/emails/password-reset.svelte';
 import emailVerification from '$lib/emails/email-verification.svelte';
 import { BASE_URL, GOOGLE_EMAIL, GOOGLE_EMAIL_PASSWORD } from '$env/static/private';
 
@@ -13,6 +14,23 @@ const transporter = nodemailer.createTransport({
 		pass: GOOGLE_EMAIL_PASSWORD
 	}
 });
+
+export const sendPasswordResetLink = async (token: string, user: User) => {
+	const emailHtml = render({
+		template: passwordReset,
+		props: {
+			name: user.username,
+			passwordResetUrl: `${BASE_URL}/reset-password/${token}`
+		}
+	});
+	const options = {
+		from: GOOGLE_EMAIL,
+		to: user.email,
+		subject: 'Demande de réinitialisation de mot de passe AlertMNS',
+		html: emailHtml
+	};
+	await transporter.sendMail(options);
+};
 
 export const sendEmailVerificationLink = async (token: string, user: User) => {
 	const emailHtml = render({
