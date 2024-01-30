@@ -1,10 +1,23 @@
 <script lang="ts">
-	import { Accordion, AccordionItem } from '@skeletonlabs/skeleton';
+	import {
+		popup,
+		Accordion,
+		AccordionItem,
+		getModalStore,
+		type PopupSettings,
+		type ModalSettings
+	} from '@skeletonlabs/skeleton';
 	import ifa from '$lib/assets/ifa.png';
 	import mns from '$lib/assets/mns2.png';
 	import Cog from '~icons/mdi/cog';
 	import Plus from '~icons/mdi/plus';
 	import { page } from '$app/stores';
+
+	const popupClick: PopupSettings = {
+		event: 'click',
+		target: 'popupClick',
+		placement: 'top'
+	};
 
 	export let value: {
 		username: string;
@@ -21,6 +34,13 @@
 	};
 	let refs: HTMLAnchorElement[] = [];
 	$: value, (refs = Array(value.conversations.length).fill(null));
+
+	const modal: ModalSettings = {
+		type: 'component',
+		component: 'createConversation'
+	};
+
+	const modalStore = getModalStore();
 </script>
 
 <div class="h-full flex flex-col">
@@ -30,7 +50,9 @@
 	</a>
 	<div class="flex-grow">
 		<nav class="list-nav">
-			<button class="flex w-full"><Plus /> Nouveau</button>
+			<button on:click={() => modalStore.trigger(modal)} class="flex w-full"
+				><Plus /> Nouveau</button
+			>
 		</nav>
 		<Accordion>
 			<AccordionItem open>
@@ -78,7 +100,7 @@
 	<div class="flex text-xl items-center p-2 bg-surface-800">
 		<p class="flex-grow">{value.username}</p>
 
-		<button class="btn btn-icon"><Cog /></button>
+		<button use:popup={popupClick} class="btn btn-icon"><Cog /></button>
 		<div class="card w-56 shadow-xl" data-popup="popupClick">
 			<div class="flex flex-col items-center space-y-1">
 				<nav class="list-nav w-full text-sm">
