@@ -1,7 +1,7 @@
 import { render } from '@jolan57/svelte-email';
 import nodemailer from 'nodemailer';
 import type { User } from '@prisma/client';
-import passwordReset from '$lib/emails/password-reset.svelte';
+import passwordReset from '$lib/emails/reset-password.svelte';
 import emailVerification from '$lib/emails/email-verification.svelte';
 import { BASE_URL, GOOGLE_EMAIL, GOOGLE_EMAIL_PASSWORD } from '$env/static/private';
 

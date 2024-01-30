@@ -40,7 +40,7 @@
 				{/if}
 			</label>
 
-			<a href="/password-reset" class="anchor">Mot de passe oublié ?</a>
+			<a href="/reset-password" class="anchor">Mot de passe oublié ?</a>
 
 			<div class="justify-center flex">
 				<button type="submit" class="btn variant-filled">Se connecter</button>
