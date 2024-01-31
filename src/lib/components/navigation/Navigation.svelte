@@ -8,7 +8,7 @@
 		type ModalSettings
 	} from '@skeletonlabs/skeleton';
 	import ifa from '$lib/assets/ifa.png';
-	import mns from '$lib/assets/mns2.png';
+	import mns from '$lib/assets/mns.png';
 	import Cog from '~icons/mdi/cog';
 	import Plus from '~icons/mdi/plus';
 	import { page } from '$app/stores';
