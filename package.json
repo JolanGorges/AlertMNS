@@ -15,6 +15,9 @@
     "test:unit": "vitest",
     "prepare": "husky"
   },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
   "devDependencies": {
     "@commitlint/cli": "^18.6.0",
     "@commitlint/config-conventional": "^18.6.0",
@@ -46,6 +49,7 @@
     "sveltekit-superforms": "^1.13.4",
     "tailwindcss": "3.4.1",
     "tslib": "^2.6.2",
+    "tsx": "^4.7.0",
     "typescript": "^5.3.3",
     "unplugin-icons": "^0.18.3",
     "vite": "^5.0.12",
