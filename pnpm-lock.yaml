@@ -17,6 +17,9 @@ dependencies:
   '@prisma/client':
     specifier: 5.8.1
     version: 5.8.1(prisma@5.8.1)
+  generate-password:
+    specifier: ^1.7.1
+    version: 1.7.1
   highlight.js:
     specifier: 11.9.0
     version: 11.9.0
@@ -2771,6 +2774,10 @@ packages:
   /function-bind@1.1.2:
     resolution: {integrity: sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==}
     dev: true
+
+  /generate-password@1.7.1:
+    resolution: {integrity: sha512-9bVYY+16m7W7GczRBDqXE+VVuCX+bWNrfYKC/2p2JkZukFb2sKxT6E3zZ3mJGz7GMe5iRK0A/WawSL3jQfJuNQ==}
+    dev: false
 
   /get-caller-file@2.0.5:
     resolution: {integrity: sha512-DyFP3BM/3YHTQOCUL/w0OZHR0lpKeGrxotcHWcqNEdnltqFwXVfhEBQ94eIo34AfQpo0rGki4cyIiftY06h2Fg==}
