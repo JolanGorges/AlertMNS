@@ -1,4 +1,4 @@
-import { fail } from '@sveltejs/kit';
+import { fail, redirect } from '@sveltejs/kit';
 import { isWithinExpirationDate } from 'oslo';
 import { Argon2id } from 'oslo/password';
 import { z } from 'zod';
@@ -69,13 +69,13 @@ export const actions: Actions = {
 
 		const session = await lucia.createSession(token.userId, {});
 		const sessionCookie = lucia.createSessionCookie(session.id);
-
-		return {
-			status: 302,
-			headers: {
-				Location: '/',
-				'Set-Cookie': sessionCookie.serialize()
-			}
-		};
+		redirect(302, '/');
+		// return {
+		// 	status: 302,
+		// 	headers: {
+		// 		Location: '/',
+		// 		'Set-Cookie': sessionCookie.serialize()
+		// 	}
+		// };
 	}
 };
